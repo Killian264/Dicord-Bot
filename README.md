@@ -1,5 +1,5 @@
 # Discord-Bot
-C# Discord Bot that I am currently working on.
+C# Discord Bot that I am currently working on using .NET and Discord.Net.
 
 ------------------------------------------------------
 
