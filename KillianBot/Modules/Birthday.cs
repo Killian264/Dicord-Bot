@@ -11,122 +11,106 @@ namespace KillianBot.Modules
 {
     public class Birthday : ModuleBase<SocketCommandContext>
     {
+        //This should probably come from another place
         string filePath = @"FILEPATH";
-        string splitChar = " ";
-        TimeSpan day = TimeSpan.FromDays(1);
 
+        /* Assuming the birthday file is formatted thusly
+         * 
+         * Name,mm/dd/yyyy
+         * ...
+         * Example:
+         * John,2/22/2000
+         * ...
+         * 
+         * For safety sake I would suggest names not contain special character (or at the very least not commas)
+         * Names should also be unique for more reasons than "Wait, which one of you is this?" (Dictionaries)
+         */
+
+        //UNTESTED
         [Discord.Commands.Command("Birthday")]
         public async Task birthday()
         {
-            DateTime today = DateTime.Now;
-            string[] arr = initilize(File.ReadAllLines(filePath));
-            int i = 0, loc = 0, test = 0;
-            string[] parsedArr;
-            string[] birthDayNames = new string[arr.Length];
-            DateTime comp = DateTime.Parse(parseArr(arr[0])[1]);
-            foreach (string line in arr)
+            string[] birthdayLines;
+            Dictionary<string, DateTime> parsedBirthdays = new Dictionary<string, DateTime>();
+            List<string> todayBirthdayNames = new List<string>();
+            var nextClosestBirthday = ("", DateTime.Now.AddYears(1));
+            try
             {
-                parsedArr = parseArr(line);
-                DateTime birthday = DateTime.Parse(parsedArr[1]);
-                if (birthday < comp && birthday > DateTime.Now.Subtract(day) && birthday > DateTime.Now.Add(day))
-                {
-                    comp = birthday;
-                    loc = i;
-                }
-                else if (birthday < DateTime.Now.Subtract(day) && birthday < DateTime.Now.Add(day))
-                {
-                    birthDayNames[i] = parsedArr[0];
-                    test++;
-                }
-                i++;
+                birthdayLines = File.ReadAllLines(filePath);
             }
-            if (test == 1)
+            catch
             {
-                await ReplyAsync("It is " + birthDayNames[0] + "'s birthday!");
+                //TODO: Replace all the strings in the ReplyAsync methods with variables which come from a file.
+                await ReplyAsync("There was a problem reading the birthday file.");
+                return;
             }
-            else if (test > 1)
+            foreach(String birthdayLine in birthdayLines)
             {
-                await ReplyAsync("These are " + birthDayNames.Length + " birthdays today!:");
-                foreach (string line in birthDayNames)
+                string[] birthdayChunks = birthdayLine.Split(",");
+                try
                 {
-                    await ReplyAsync(line + ",");
+                    DateTime birthDate = DateTime.Parse(birthdayChunks[1]);
+                    //Sets year of birthday to this year
+                    birthDate.AddYears(DateTime.Now.Year - birthDate.Year);
+
+                    //If the birthday is before today, increment the year accordingly
+                    if(birthDate < DateTime.Now)
+                    {
+                        birthDate.AddYears(1);
+                    }
+
+                    parsedBirthdays.Add(birthdayChunks[0], birthDate);
+
+                    if (birthDate.Month == DateTime.Now.Month && birthDate.Day == DateTime.Now.Day)
+                    {
+                        todayBirthdayNames.Add(birthdayChunks[0]);
+                    }
+
+                    if(birthDate < nextClosestBirthday.Item2)
+                    {
+                        nextClosestBirthday.Item1 = birthdayChunks[0];
+                        nextClosestBirthday.Item2 = birthDate;
+                    }
                 }
+                catch (ArgumentException)
+                {
+                    await ReplyAsync("Either a duplicate name was submitted in the birthday file or"
+                        + " there was an incorrectly formatted birthday entry.");
+                    return;
+                }
+                catch(FormatException)
+                {
+                    await ReplyAsync("There was an incorrectly formatted birthday entry.");
+                    return;
+                }
+            }
+
+            if(todayBirthdayNames.Count == 1)
+            {
+                await ReplyAsync("It's " + todayBirthdayNames[0] + "'s birthday!");
+            }
+            else if (todayBirthdayNames.Count > 1)
+            {
+                //Make sure comma doesn't end up at the end of the string of names
+                string result = todayBirthdayNames[0];
+                todayBirthdayNames.RemoveAt(0);
+
+                await ReplyAsync("There are " + todayBirthdayNames.Count + " birthdays today!\n");
+
+                foreach (string name in todayBirthdayNames)
+                {
+                    result += ", " + name;
+                }
+                await ReplyAsync(result);
             }
             else
             {
-                await ReplyAsync(arr[loc] + " has the next birthday in " + DateTime.Now.Subtract(comp).ToString("dd") + " days");
-            }
-        }
-        private string[] initilize(string[] arr)
-        {
-            string lines;
-            string[] parsedArr;
-            int len;
-            int i = 0;
-            bool clean = true;
-            DateTime today = DateTime.Now;
-
-            foreach (string line in arr)
-            {
-                parsedArr = parseArr(line);
-                len = parsedArr.Length;
-                if (len > 2)
+                if(nextClosestBirthday.Item1 != "")
                 {
-                    lines = cleanLine(line);
-                    arr[i] = (parsedArr[0] + " " + lines);
-                    clean = false;
-                }
-                else if (len < 1)
-                {
-                    ReplyAsync("Error birthday line " + (i + 1));
-                }
-                if (today.Subtract(day) > DateTime.Parse(parsedArr[1]))
-                {
-                    parsedArr[1] = upDate(DateTime.Parse(parsedArr[1])).ToString("yyyy/MM/dd");
-                    arr[i] = parsedArr[0] + " " + parsedArr[1];
-                }
-                i++;
-            }
-            if (clean == false)
-            {
-                System.IO.File.WriteAllLines(filePath, arr);
-            }
-            return arr;
-        }
-        private string[] parseArr(string arr)
-        {
-            return (arr.Split(splitChar));
-        }
-        private string cleanLine(string date)
-        {
-            string[] arr = date.Split(splitChar);
-            string sep = "/";
-
-            if (String.IsNullOrEmpty(arr[1]) == true)
-            {
-                arr[1] = DateTime.Now.ToString("yyyy");
-            }
-            if (int.TryParse(arr[2], out int errOut) == false)
-            {
-                if (KillianBotService.monthsOfYear.monthDict.TryGetValue(arr[2], out int value) == true)
-                {
-                    arr[2] = value.ToString();
-                }
-                else
-                {
-                    arr[2] = "13";
+                    await ReplyAsync(nextClosestBirthday.Item1 + " has the next birthday in " 
+                        + (nextClosestBirthday.Item2 - DateTime.Now).Days + " days");
                 }
             }
-            return (int.Parse(arr[1]) + sep + int.Parse(arr[2]) + sep + int.Parse(arr[3]));
-        }
-        private DateTime upDate(DateTime birthDate)
-        {
-            while (DateTime.Now.Subtract(TimeSpan.FromDays(1)) > birthDate)
-            {
-                birthDate = birthDate + TimeSpan.FromDays(365);
-            }
-            return birthDate;
-
         }
     }
 }
