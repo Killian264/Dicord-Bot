@@ -9,6 +9,7 @@ namespace KillianBot.Services
     {
         public class monthsOfYear
         {
+            //Do we still need this?
             public readonly static Dictionary<string, int> monthDict = new Dictionary<string,int>
             {
                 {"January", 1},
