@@ -20,8 +20,7 @@ namespace KillianBot.Services
 
             public static async Task<DictionaryList> GetDef(string word)
             {
-                string bigUrl = url + WebUtility.UrlEncode(word.Trim()) + WebUtility.UrlEncode(lang);
-                var JsonReturn = await client.GetStringAsync(bigUrl);
+                var JsonReturn = await client.GetStringAsync(url + WebUtility.UrlEncode(word.Trim()) + WebUtility.UrlEncode(lang));
                 return JsonConvert.DeserializeObject<DictionaryList>(JsonReturn);
             }
         }
