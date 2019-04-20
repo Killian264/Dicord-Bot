@@ -13,9 +13,11 @@ Async framework that allows for more modules
 
 Dictionary Module that gives you definition of a word
 
+Config File - bin/Debug/netcoreapp2.0 - If you change location update filePaths in code.
+
 -----------------------------------------------------
 
-TODO Main:
+TODO Birthday:
 
 Add Birthday commands such as append and delete without having to open the file
 
