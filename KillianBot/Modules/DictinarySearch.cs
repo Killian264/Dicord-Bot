@@ -1,8 +1,10 @@
-using System;
+﻿using System;
 using Discord.Commands;
 using System.Threading.Tasks;
 using System.Linq;
 using Discord;
+using KillianBot.Services;
+using System.Collections.Generic;
 
 namespace KillianBot.Modules
 {
@@ -11,8 +13,11 @@ namespace KillianBot.Modules
         [Discord.Commands.Command("define")]
         public async Task Definition(string word)
         {
-            string MerriamBase = "https://www.merriam-webster.com/dictionary/";
-            Services.KillianBotService.DictionaryList results = new Services.KillianBotService.DictionaryList();
+            string MerriamBase = Collections.Config.MerriamBase;
+            string gF = Collections.Config.GoogleFirst;
+            string gS = Collections.Config.GoogleSecond;
+
+            Collections.DictionaryList results = new Collections.DictionaryList();
 
             if (String.IsNullOrEmpty(word)) return;
             try
@@ -27,7 +32,7 @@ namespace KillianBot.Modules
             var embed = new EmbedBuilder()
                 .WithAuthor(word.First().ToString().ToUpper() + word.Substring(1) + "---Definition")
                 .WithTitle("Definition Link")
-                .WithUrl("https://www.google.com/search?rlz=1C1CHBF_enUS715US715&ei=KCq6XOvFAsOisAXRuJPYBQ&q=" + word + "+def&oq=dammit+def&gs_l=psy-ab.3..0i67i70i249j0l7j0i22i30l2.5814.9270..9323...8.0..0.157.2131.0j17....2..0....1..gws-wiz.....6..35i39j0i131j0i67j0i10j0i10i67j0i131i67.vr1ivIEsmVQ")
+                .WithUrl(gF + word + gS)
                 .WithColor(Color.DarkerGrey)
                 .WithFooter(MerriamBase + word);
 
@@ -36,6 +41,15 @@ namespace KillianBot.Modules
             if (results.meaning.adverb != null) embed.AddField("Adverb", results.meaning.adverb[0].definition);
             if (results.meaning.adjective != null) embed.AddField("Adjective", results.meaning.adjective[0].definition);
             if (results.meaning.exclamation != null) embed.AddField("Exclamation", results.meaning.exclamation[0].definition);
+            if (results.meaning.determiner != null) embed.AddField("Determiner", results.meaning.determiner[0].definition);
+            if (results.meaning.pronoun != null) embed.AddField("ProNoun", results.meaning.pronoun[0].definition);
+            if (results.meaning.preposition != null) embed.AddField("Preposition", results.meaning.preposition[0].definition);
+            if (results.meaning.conjunction != null) embed.AddField("Conjunction", results.meaning.conjunction[0].definition);
+            if (results.meaning.conjunctAndAdverb != null) embed.AddField("Conjunction & Adverb", results.meaning.conjunctAndAdverb[0].definition);
+            if (results.meaning.deterAndPronoun != null) embed.AddField("Determiner & Pronoun", results.meaning.deterAndPronoun[0].definition);
+            if (results.meaning.preDetP != null) embed.AddField("Predeterminer, Determiner, & Pronoun", results.meaning.preDetP[0].definition);
+            if (results.meaning.number != null) embed.AddField("Number", results.meaning.number[0]);
+            if (results.meaning.detProAdj != null) embed.AddField("Determiner, Pronoun, & Adjective", results.meaning.detProAdj[0].definition);
 
             await ReplyAsync(embed: embed.Build());
         }

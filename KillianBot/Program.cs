@@ -1,14 +1,14 @@
-﻿using System;
-using Discord;
+﻿using Discord;
 using Discord.WebSocket;
+using System;
 using System.Threading.Tasks;
+using System.IO;
+using KillianBot.Services;
 
 namespace KillianBot
 {
     public class Program
     {
-        const string _clientID = "ID";
-
         static void Main(string[] args)
         => new Program().StartAsync().GetAwaiter().GetResult();
 
@@ -18,9 +18,12 @@ namespace KillianBot
 
         public async Task StartAsync()
         {
+
             _client = new DiscordSocketClient();
 
-            await _client.LoginAsync(TokenType.Bot, _clientID);
+            KillianBotService.ConfigGet.GetConfig();
+
+            await _client.LoginAsync(TokenType.Bot, Collections.Config.BotToken);
 
             await _client.StartAsync();
 

@@ -1,0 +1,28 @@
+{
+  "BotToken": "BOT TOKEN",
+  "BirthdayFileName": "birthday.txt",
+  "DictionaryApi": "DICTIONARY API",
+  "DictionaryLang": "&lang=en",
+  "CommandLetter": "!",
+  "MerriamBase": "https://www.merriam-webster.com/dictionary/",
+  "GoogleFirst": "https://www.google.com/search?rlz=1C1CHBF_enUS715US715&ei=KCq6XOvFAsOisAXRuJPYBQ&q=",
+  "GoogleSecond": "+def",
+
+  "WordTypes": [
+    "noun",
+    "verb",
+    "adverb",
+    "adjective",
+    "exclamation",
+    "determiner",
+    "pronoun",
+    "preposition",
+    "conjunction",
+    "conjunction & adverb",
+    "determiner & pronoun",
+    "predeterminer, determiner, & pronoun",
+    "determiner, pronoun, & adjective",
+    "number"
+  ],
+  "NumWordTypes": "13"
+}

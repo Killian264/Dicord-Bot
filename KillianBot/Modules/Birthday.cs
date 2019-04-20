@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Discord.Commands;
 using System.Threading.Tasks;
 using System.IO;
-using Discord.WebSocket;
 using KillianBot.Services;
 
 namespace KillianBot.Modules
 {
     public class Birthday : ModuleBase<SocketCommandContext>
     {
-        //This should probably come from another place
-        string filePath = @"FILEPATH";
+        string filePath = System.AppContext.BaseDirectory + Collections.Config.BirthdayFileName;
 
         /* Assuming the birthday file is formatted thusly
          * 
@@ -44,7 +41,7 @@ namespace KillianBot.Modules
                 await ReplyAsync("There was a problem reading the birthday file.");
                 return;
             }
-            foreach(String birthdayLine in birthdayLines)
+            foreach (String birthdayLine in birthdayLines)
             {
                 string[] birthdayChunks = birthdayLine.Split(",");
                 try
@@ -54,7 +51,7 @@ namespace KillianBot.Modules
                     birthDate.AddYears(DateTime.Now.Year - birthDate.Year);
 
                     //If the birthday is before today, increment the year accordingly
-                    if(birthDate < DateTime.Now)
+                    if (birthDate < DateTime.Now)
                     {
                         birthDate.AddYears(1);
                     }
@@ -66,7 +63,7 @@ namespace KillianBot.Modules
                         todayBirthdayNames.Add(birthdayChunks[0]);
                     }
 
-                    if(birthDate < nextClosestBirthday.Item2)
+                    if (birthDate < nextClosestBirthday.Item2)
                     {
                         nextClosestBirthday.Item1 = birthdayChunks[0];
                         nextClosestBirthday.Item2 = birthDate;
@@ -78,14 +75,14 @@ namespace KillianBot.Modules
                         + " there was an incorrectly formatted birthday entry.");
                     return;
                 }
-                catch(FormatException)
+                catch (FormatException)
                 {
                     await ReplyAsync("There was an incorrectly formatted birthday entry.");
                     return;
                 }
             }
 
-            if(todayBirthdayNames.Count == 1)
+            if (todayBirthdayNames.Count == 1)
             {
                 await ReplyAsync("It's " + todayBirthdayNames[0] + "'s birthday!");
             }
@@ -105,9 +102,9 @@ namespace KillianBot.Modules
             }
             else
             {
-                if(nextClosestBirthday.Item1 != "")
+                if (nextClosestBirthday.Item1 != "")
                 {
-                    await ReplyAsync(nextClosestBirthday.Item1 + " has the next birthday in " 
+                    await ReplyAsync(nextClosestBirthday.Item1 + " has the next birthday in "
                         + (nextClosestBirthday.Item2 - DateTime.Now).Days + " days");
                 }
             }

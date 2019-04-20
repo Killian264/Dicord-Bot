@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net;
+using KillianBot.Services;
+using System.Reflection;
+using System.IO;
+using System;
 
 namespace KillianBot.Services
 {
@@ -12,51 +14,37 @@ namespace KillianBot.Services
     {
         public class DefinitionGet
         {
-            //If you use this code make sure that you concatenate the api you plan to use properly
-            const string url = "API MAIN URL";
-            const string lang = "SECONDARY API URL";
-
             private static HttpClient client = new HttpClient();
 
-            public static async Task<DictionaryList> GetDef(string word)
+            public static async Task<Collections.DictionaryList> GetDef(string word)
             {
-                var JsonReturn = await client.GetStringAsync(url + WebUtility.UrlEncode(word.Trim()) + WebUtility.UrlEncode(lang));
-                return JsonConvert.DeserializeObject<DictionaryList>(JsonReturn);
+                string url = Collections.Config.DictionaryApi;
+                word = WebUtility.UrlEncode(word.Trim());
+                string lang = WebUtility.UrlEncode(Collections.Config.DictionaryLang);
+
+                var JsonReturn = await client.GetStringAsync(url + word + lang);
+                return JsonConvert.DeserializeObject<Collections.DictionaryList>(JsonReturn);
             }
         }
 
-        public class DictionaryList
+        public class ConfigGet
         {
-            public string word { get; set; }
-
-            public string[] phonetic { get; set; }
-
-            public string pronunciation { get; set; }
-
-            public MeaningGet meaning { get; set; }
-        }
-
-        public class MeaningGet
-        {
-            public List<DictionaryDataList> noun { get; set; }
-
-            public List<DictionaryDataList> verb { get; set; }
-
-            public List<DictionaryDataList> adverb { get; set; }
-
-            public List<DictionaryDataList> adjective { get; set; }
-
-            public List<DictionaryDataList> exclamation { get; set; }
-        }
-
-        public class DictionaryDataList
+            public static void GetConfig()
             {
-            public string definition { get; set; }
-
-            public string example { get; set; }
-
-            public string[] synonyms { get; set; }
+                var results = JsonConvert.DeserializeObject<Collections.ConfigList>(File.ReadAllText(@"C:\Users\Killian\Desktop\KillianBot\bin\Debug\netcoreapp2.0/config.json"));
+                Collections.Config.BotToken = results.BotToken;
+                Collections.Config.BirthdayFileName = results.BirthdayFileName;
+                Collections.Config.DictionaryApi = results.DictionaryApi;
+                Collections.Config.DictionaryLang = results.DictionaryLang;
+                Collections.Config.CommandLetter = results.CommandLetter;
+                Collections.Config.MerriamBase = results.MerriamBase;
+                Collections.Config.GoogleFirst = results.GoogleFirst;
+                Collections.Config.GoogleSecond = results.GoogleSecond;
+                Collections.Config.WordTypes = results.WordTypes;
+                Collections.Config.NumWordTypes = results.NumWordTypes;
+            }
         }
+
     }
 
 }

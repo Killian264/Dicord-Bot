@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Discord.Commands;
+﻿using Discord.Commands;
 using Discord.WebSocket;
 using System.Reflection;
 using System.Threading.Tasks;
+using KillianBot.Services;
 
 namespace KillianBot
 {
@@ -14,7 +12,7 @@ namespace KillianBot
 
        private CommandService _service;
 
-       char cmdLetter = '!';
+       char cmdLetter = Collections.Config.CommandLetter;
 
        public CommandHandler(DiscordSocketClient client)
         {
@@ -25,7 +23,6 @@ namespace KillianBot
             _service.AddModulesAsync(Assembly.GetEntryAssembly(), null);
 
             _client.MessageReceived += HandleCommandAsync;
-
 
         }
 
