@@ -5,53 +5,88 @@ using System.Linq;
 using Discord;
 using KillianBot.Services;
 using System.Collections.Generic;
+using System.Reflection;
+using Discord.Commands.Builders;
 
 namespace KillianBot.Modules
 {
     public class Define : ModuleBase<SocketCommandContext>
     {
-        [Discord.Commands.Command("define")]
+        int count = 0;
+        string[] types = Collections.Config.WordTypes;
+
+        [Discord.Commands.Command("define"), Summary("Defines word")]
         public async Task Definition(string word)
+        {
+
+            var results = await baseDefine(word);
+            var embed = await baseEmbed(word);
+            embed.WithAuthor(word.First().ToString().ToUpper() + word.Substring(1) + "---Definitions");
+
+            foreach (List<Collections.DictionaryDataList> type in results.meaning.lists)
+            {
+                if (type != null) embed.AddField(types[count], type[0].definition);
+                count++;
+            }
+
+            await ReplyAsync(embed: embed.Build());
+        }
+        [Discord.Commands.Command("defineall"), Summary("Gets all definitons of word")]
+        public async Task DefineAll(string word)
+        {
+            var results = await baseDefine(word);
+            var embed = await baseEmbed(word);
+
+            embed.WithAuthor(word.First().ToString().ToUpper() + word.Substring(1) + "---All Definitions");
+            string conCat = "";
+
+            foreach (List<Collections.DictionaryDataList> type in results.meaning.lists)
+            {
+                conCat = "";
+                for (int i = 0; i < type.Count; i++)
+                {
+                    if (type != null)
+                    {
+                        conCat = string.Concat(conCat, "\n\n", type[i].definition);
+                    }
+                }
+                conCat = string.Concat(conCat, "\n----------");
+                if (type != null) embed.AddField(types[count], conCat);
+                //embed.AddField("----------", "----------");
+                count++;
+            }
+
+            await ReplyAsync(embed: embed.Build());
+        }
+
+        private async Task<Collections.DictionaryList> baseDefine(string word)
+        {
+            Collections.DictionaryList results = new Collections.DictionaryList();
+
+            if (String.IsNullOrEmpty(word)) return null;
+            try
+            {
+                return results = await Services.KillianBotService.DefinitionGet.GetDef(word);
+            }
+            catch
+            {
+                await ReplyAsync("No results");
+                return null;
+            }
+        }
+        private async Task<EmbedBuilder> baseEmbed(string word)
         {
             string MerriamBase = Collections.Config.MerriamBase;
             string gF = Collections.Config.GoogleFirst;
             string gS = Collections.Config.GoogleSecond;
 
-            Collections.DictionaryList results = new Collections.DictionaryList();
-
-            if (String.IsNullOrEmpty(word)) return;
-            try
-            {
-                results = await Services.KillianBotService.DefinitionGet.GetDef(word);
-            }
-            catch
-            {
-                await ReplyAsync("No results");
-            }
-
             var embed = new EmbedBuilder()
-                .WithAuthor(word.First().ToString().ToUpper() + word.Substring(1) + "---Definition")
                 .WithTitle("Definition Link")
                 .WithUrl(gF + word + gS)
                 .WithColor(Color.DarkerGrey)
                 .WithFooter(MerriamBase + word);
 
-            if (results.meaning.noun != null) embed.AddField("Noun", results.meaning.noun[0].definition);
-            if (results.meaning.verb != null) embed.AddField("Verb", results.meaning.verb[0].definition);
-            if (results.meaning.adverb != null) embed.AddField("Adverb", results.meaning.adverb[0].definition);
-            if (results.meaning.adjective != null) embed.AddField("Adjective", results.meaning.adjective[0].definition);
-            if (results.meaning.exclamation != null) embed.AddField("Exclamation", results.meaning.exclamation[0].definition);
-            if (results.meaning.determiner != null) embed.AddField("Determiner", results.meaning.determiner[0].definition);
-            if (results.meaning.pronoun != null) embed.AddField("ProNoun", results.meaning.pronoun[0].definition);
-            if (results.meaning.preposition != null) embed.AddField("Preposition", results.meaning.preposition[0].definition);
-            if (results.meaning.conjunction != null) embed.AddField("Conjunction", results.meaning.conjunction[0].definition);
-            if (results.meaning.conjunctAndAdverb != null) embed.AddField("Conjunction & Adverb", results.meaning.conjunctAndAdverb[0].definition);
-            if (results.meaning.deterAndPronoun != null) embed.AddField("Determiner & Pronoun", results.meaning.deterAndPronoun[0].definition);
-            if (results.meaning.preDetP != null) embed.AddField("Predeterminer, Determiner, & Pronoun", results.meaning.preDetP[0].definition);
-            if (results.meaning.number != null) embed.AddField("Number", results.meaning.number[0]);
-            if (results.meaning.detProAdj != null) embed.AddField("Determiner, Pronoun, & Adjective", results.meaning.detProAdj[0].definition);
-
-            await ReplyAsync(embed: embed.Build());
+            return embed;
         }
     }
     
