@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 using KillianBot.Services;
+using Reddit;
 
 namespace KillianBot.Services
 {
@@ -21,37 +22,38 @@ namespace KillianBot.Services
 
         public class MeaningGet
         {
-            public List<DictionaryDataList> noun { get; set; }
+            public List<List<DictionaryDataList>> lists = new List<List<DictionaryDataList>>();
+            public List<DictionaryDataList> noun {set { lists.Add(value); } }
 
-            public List<DictionaryDataList> verb { get; set; }
+            public List<DictionaryDataList> verb { set { lists.Add(value); } }
 
-            public List<DictionaryDataList> adverb { get; set; }
+            public List<DictionaryDataList> adverb { set { lists.Add(value); } }
 
-            public List<DictionaryDataList> adjective { get; set; }
+            public List<DictionaryDataList> adjective { set { lists.Add(value); } }
 
-            public List<DictionaryDataList> exclamation { get; set; }
+            public List<DictionaryDataList> exclamation { set { lists.Add(value); } }
 
-            public List<DictionaryDataList> determiner { get; set; }
+            public List<DictionaryDataList> determiner { set { lists.Add(value); } }
 
-            public List<DictionaryDataList> pronoun { get; set; }
+            public List<DictionaryDataList> pronoun { set { lists.Add(value); } }
 
-            public List<DictionaryDataList> preposition { get; set; }
+            public List<DictionaryDataList> preposition { set { lists.Add(value); } }
 
-            public List<DictionaryDataList> conjunction { get; set; }
+            public List<DictionaryDataList> conjunction { set { lists.Add(value); } }
 
             [JsonProperty("conjunction & adverb")]
-            public List<DictionaryDataList> conjunctAndAdverb { get; set; }
+            public List<DictionaryDataList> conjunctAndAdverb { set { lists.Add(value); } }
 
             [JsonProperty("determiner & pronoun")]
-            public List<DictionaryDataList> deterAndPronoun { get; set; }
+            public List<DictionaryDataList> deterAndPronoun { set { lists.Add(value); } }
 
             [JsonProperty("predeterminer, determiner, & pronoun")]
-            public List<DictionaryDataList> preDetP { get; set; }
+            public List<DictionaryDataList> preDetP { set { lists.Add(value); } }
 
             [JsonProperty("determiner, pronoun, & adjective")]
-            public List<DictionaryDataList> detProAdj { get; set; }
+            public List<DictionaryDataList> detProAdj { set { lists.Add(value); } }
 
-            public List<DictionaryDataList> number { get; set; }
+            public List<DictionaryDataList> number { set { lists.Add(value); } }
         }
 
         public class DictionaryDataList
@@ -81,32 +83,30 @@ namespace KillianBot.Services
 
             public string GoogleSecond { get; set; }
 
-            public List<string> WordTypes { get; set; }
+            public string[] WordTypes { get; set; }
 
             public int NumWordTypes { get; set; }
+
+            public string RedditAppId { get; set; }
+
+            public string RedditAppSecret { get; set; }
+
+            public string RedditAppRefreshToken { get; set; }
         }
 
         public static class Config
         {
-            public static string BotToken;
+            public static ConfigList configList = new ConfigList();
+        }
 
-            public static string BirthdayFileName;
-
-            public static string DictionaryApi;
-
-            public static string DictionaryLang;
-
-            public static char CommandLetter;
-
-            public static string MerriamBase;
-
-            public static string GoogleFirst;
-
-            public static string GoogleSecond;
-
-            public static List<string> WordTypes;
-
-            public static int NumWordTypes;
+        public static class Dict
+        {
+            public static Dictionary<string, postsAndTime> subreddits = new Dictionary<string, postsAndTime>();
+        }
+        public class postsAndTime
+        {
+            public DateTime created { get; set; }
+            public List<Reddit.Controllers.Post> posts { get; set; }
         }
     }
 
