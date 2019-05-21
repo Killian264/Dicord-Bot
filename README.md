@@ -3,6 +3,20 @@ C# Discord Bot that I am currently working on using .NET and Discord.Net.
 
 ------------------------------------------------------
 
+Commands:
+
+!birthday - Returns next birthday or any birthdays that are today.
+
+!birthdayall - Returns a list of the birthdays on file in a Discord Embed.
+
+!define (word) - returns the definition of a word with 1 of each def type in a Discord Embed.
+
+!defineall (word) - returns all definitions of a word in a Discord Embed.
+
+!Reddit Images (subreddit) (NumImages max 100) - returns NumImages images in a Discord Embed.
+
+------------------------------------------------------
+
 Implemented:
 
 Birthday Module that will read a file and print the next birthday from the list. Added Birthday All command.
