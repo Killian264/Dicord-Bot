@@ -12,7 +12,7 @@ namespace KillianBot
 
        private CommandService _service;
 
-       char cmdLetter = Collections.Config.CommandLetter;
+       char cmdLetter = Collections.Config.configList.CommandLetter;
 
        public CommandHandler(DiscordSocketClient client)
         {
@@ -38,7 +38,7 @@ namespace KillianBot
             {
                     var result = await _service.ExecuteAsync(context, argPos, null);
 
-                    if (!result.IsSuccess && result.Error != CommandError.UnknownCommand)
+                if (!result.IsSuccess && result.Error != CommandError.UnknownCommand)
                     {
                         await context.Channel.SendMessageAsync(result.ErrorReason);
                     }

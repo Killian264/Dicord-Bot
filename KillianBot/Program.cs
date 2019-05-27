@@ -23,7 +23,7 @@ namespace KillianBot
 
             KillianBotService.ConfigGet.GetConfig();
 
-            await _client.LoginAsync(TokenType.Bot, Collections.Config.BotToken);
+            await _client.LoginAsync(TokenType.Bot, Collections.Config.configList.BotToken);
 
             await _client.StartAsync();
 
