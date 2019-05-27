@@ -15,6 +15,8 @@ Commands:
 
 !Reddit Images (subreddit) (NumImages max 100) - returns NumImages images in a Discord Embed.
 
+!help - gives help on all commands or just one
+
 ------------------------------------------------------
 
 Implemented:
@@ -31,6 +33,10 @@ Config File - bin/Debug/netcoreapp2.0 - If you change location update filePaths 
 
 Reddit Image Get - given a subreddit and the amount of images you would like gets 100 of the top posts for the day and uploads the images to discord.
 
+Help Command
+
+Implemented privileges
+
 -----------------------------------------------------
 
 TODO Methods:
@@ -41,4 +47,4 @@ Song Player - Plays song from youtube
 
 TODO General:
 
-Implement discord privileges into bot features.
+Tidy up
