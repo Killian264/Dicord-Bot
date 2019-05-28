@@ -17,6 +17,8 @@ Commands:
 
 !help - gives help on all commands or just one
 
+!info - gives discord guild information
+
 ------------------------------------------------------
 
 Implemented:
