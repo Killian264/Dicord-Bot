@@ -9,8 +9,7 @@ namespace KillianBot
 {
     public class Program
     {
-        static void Main(string[] args)
-        => new Program().StartAsync().GetAwaiter().GetResult();
+        static void Main(string[] args) => new Program().StartAsync().GetAwaiter().GetResult();
 
         private DiscordSocketClient _client;
 
