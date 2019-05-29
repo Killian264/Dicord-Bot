@@ -13,14 +13,15 @@ namespace KillianBot.Modules
     public class Define : ModuleBase<SocketCommandContext>
     {
         int count = 0;
-        string[] types = Collections.Config.WordTypes;
+        string[] types = Collections.Config.configList.WordTypes;
 
         [Discord.Commands.Command("define"), Summary("Defines word")]
+        [Discord.Commands.Alias("definition", "def")]
         public async Task Definition(string word)
         {
 
             var results = await baseDefine(word);
-            var embed = await baseEmbed(word);
+            var embed = baseEmbed(word);
             embed.WithAuthor(word.First().ToString().ToUpper() + word.Substring(1) + "---Definitions");
 
             foreach (List<Collections.DictionaryDataList> type in results.meaning.lists)
@@ -32,10 +33,11 @@ namespace KillianBot.Modules
             await ReplyAsync(embed: embed.Build());
         }
         [Discord.Commands.Command("defineall"), Summary("Gets all definitons of word")]
+        [Discord.Commands.Alias("define all", "definition all", "definitionall", "def all", "defall")]
         public async Task DefineAll(string word)
         {
             var results = await baseDefine(word);
-            var embed = await baseEmbed(word);
+            var embed = baseEmbed(word);
 
             embed.WithAuthor(word.First().ToString().ToUpper() + word.Substring(1) + "---All Definitions");
             string conCat = "";
@@ -74,11 +76,11 @@ namespace KillianBot.Modules
                 return null;
             }
         }
-        private async Task<EmbedBuilder> baseEmbed(string word)
+        private EmbedBuilder baseEmbed(string word)
         {
-            string MerriamBase = Collections.Config.MerriamBase;
-            string gF = Collections.Config.GoogleFirst;
-            string gS = Collections.Config.GoogleSecond;
+            string MerriamBase = Collections.Config.configList.MerriamBase;
+            string gF = Collections.Config.configList.GoogleFirst;
+            string gS = Collections.Config.configList.GoogleSecond;
 
             var embed = new EmbedBuilder()
                 .WithTitle("Definition Link")

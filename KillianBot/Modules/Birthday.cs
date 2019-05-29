@@ -4,13 +4,18 @@ using Discord.Commands;
 using System.Threading.Tasks;
 using System.IO;
 using KillianBot.Services;
+using Discord;
+using Discord.WebSocket;
+using System.Linq;
+using Discord.Net;
 
 namespace KillianBot.Modules
 {
+
     public class Birthday : ModuleBase<SocketCommandContext>
     {
-        string filePath = System.AppContext.BaseDirectory + Collections.Config.BirthdayFileName;
-
+        string filePath = System.AppContext.BaseDirectory + Collections.Config.configList.BirthdayFileName;
+        
         /* Assuming the birthday file is formatted thusly
          * 
          * Name,mm/dd/yyyy
@@ -22,15 +27,17 @@ namespace KillianBot.Modules
          * For safety sake I would suggest names not contain special character (or at the very least not commas)
          * Names should also be unique for more reasons than "Wait, which one of you is this?" (Dictionaries)
          */
-
         //UNTESTED
-        [Discord.Commands.Command("Birthday")]
+        [Discord.Commands.Command("Birthday"), Summary("Checks birthdays and sends next birthday or checks if someones birthday is today.")]
+        [Discord.Commands.RequireUserPermission(GuildPermission.SendMessages)]
+        [Discord.Commands.Alias("bday")]
         public async Task birthday()
         {
             string[] birthdayLines;
             Dictionary<string, DateTime> parsedBirthdays = new Dictionary<string, DateTime>();
             List<string> todayBirthdayNames = new List<string>();
             var nextClosestBirthday = ("", DateTime.Now.AddYears(1));
+
             try
             {
                 birthdayLines = File.ReadAllLines(filePath);
@@ -108,6 +115,33 @@ namespace KillianBot.Modules
                         + (nextClosestBirthday.Item2 - DateTime.Now).Days + " days");
                 }
             }
+        }
+        [Discord.Commands.Command("Birthday All"), Summary("Gets all birthdays from file")]
+        [Discord.Commands.Alias("birthday all", "bday all", "bdayall")]
+        [Discord.Commands.RequireUserPermission(GuildPermission.ManageMessages)]
+        public async Task birthdayAll()
+        {
+            string[] birthdayLines = File.ReadAllLines(filePath);
+            string conCat = "";
+            var embed = new EmbedBuilder()
+                .WithColor(Color.DarkerGrey);
+            for(int i = 0; i < birthdayLines.Length; i++)
+            {
+                if(i % 50 == 0 && i != 0)
+                {
+                    embed.WithDescription(conCat);
+                    await ReplyAsync(embed: embed.Build());
+                    embed = new EmbedBuilder()
+                        .WithAuthor("All Birthdays on File Cont.")
+                        .WithColor(Color.DarkerGrey);
+                    conCat = "";
+                }
+
+                conCat = string.Concat(conCat, "\n", birthdayLines[i].Replace(' ', ','));
+            }
+            embed.WithDescription(conCat);
+            await ReplyAsync(embed: embed.Build());
+            return;
         }
     }
 }

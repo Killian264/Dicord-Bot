@@ -2,15 +2,8 @@
 using System.Collections.Generic;
 using Discord.Commands;
 using System.Threading.Tasks;
-using System.IO;
 using KillianBot.Services;
 using Discord;
-using Discord.WebSocket;
-using System.Linq;
-using System.Diagnostics;
-using IronPython.Hosting;
-using Microsoft.Scripting.Hosting;
-using Newtonsoft.Json;
 using Reddit;
 namespace KillianBot.Modules
 {
@@ -20,10 +13,9 @@ namespace KillianBot.Modules
 
         [Discord.Commands.Command("RedditImages"), 
             Summary("Sends Images from a reddit of your choice"),
-            Discord.Commands.Alias("ImagesReddit", "RedditImgGet", "Reddit Images")]
+            Discord.Commands.Alias("ImagesReddit", "RedditImgGet", "Reddit Images", "Get Image Reddit")]
         public async Task redditImages(string subRedditName, int importNum)
         {
-
             Collections.postsAndTime postsAndTime = new Collections.postsAndTime();
 
             if (Collections.Dict.subreddits.ContainsKey(subRedditName))
@@ -38,8 +30,8 @@ namespace KillianBot.Modules
             if (postsAndTime.created <= (DateTime.Now - TimeSpan.FromDays(1)))  //&& postLines[1] != subRedditName) || postLines[1] != subRedditName)
             {
                 Collections.Dict.subreddits.Remove(subRedditName);
-                if(importNum < 100) { importNum = 100; }
-                var topPosts = GetTopRedditPosts(subRedditName, importNum, "top", "day");
+                //if(importNum < 100) { importNum = 100; }
+                var topPosts = GetTopRedditPosts(subRedditName, 100, "top", "day");
                 
                 postsAndTime.created = DateTime.Now;
                 postsAndTime.posts = topPosts;
