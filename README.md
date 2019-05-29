@@ -19,6 +19,8 @@ Commands:
 
 !info - gives discord guild information
 
+!getanime - searches for an anime and returns myAnimeList info on it.
+
 ------------------------------------------------------
 
 Implemented:
