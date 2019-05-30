@@ -30,7 +30,7 @@ namespace KillianBot.Services
         {
             public static void GetConfig()
             {
-                var results = JsonConvert.DeserializeObject<Collections.ConfigList>(File.ReadAllText(@"C:\Users\Killian\Desktop\KillianBot\bin\Debug\netcoreapp2.0/config.json"));
+                var results = JsonConvert.DeserializeObject<Collections.ConfigList>(File.ReadAllText(System.AppContext.BaseDirectory + "config.json"));
                 Collections.Config.configList.BotToken = results.BotToken;
                 Collections.Config.configList.BirthdayFileName = results.BirthdayFileName;
                 Collections.Config.configList.DictionaryApi = results.DictionaryApi;
