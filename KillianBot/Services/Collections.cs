@@ -13,6 +13,7 @@ namespace KillianBot.Services
     {
         public static Dictionary<string, Settings> commands = new Dictionary<string, Settings>
         {
+                //Set command info here, only permission will change the actual command status. There is a way to do this with Alias as well but its a pain.
                 {"Birthday", new Settings{
                     permission = GuildPermission.SendMessages,
                     aliases = new string[1] {"bday"},
@@ -47,7 +48,19 @@ namespace KillianBot.Services
                     permission = GuildPermission.SendMessages,
                     aliases = new string[1] {"None"},
                     description = "Helps",
-                    howUse = "!help or !help commandname" } }
+                    howUse = "!help or !help commandname" } },
+
+                {"Info", new Settings{
+                    permission = GuildPermission.SendMessages,
+                    aliases = new string[1] {"None"},
+                    description = "Gives server info",
+                    howUse = "!info" } },
+
+                {"getAnime", new Settings{
+                    permission = GuildPermission.SendMessages,
+                    aliases = new string[3] {"getAnime", "animeGet", "anime"},
+                    description = "Searches and returns MyAnimeList info for an anime of the name given",
+                    howUse = "!getAnime animename" } }
         };
         public class myAnimeListData
         {
@@ -169,6 +182,8 @@ namespace KillianBot.Services
             public string RedditAppRefreshToken { get; set; }
 
             public AliasesOfEach aliases { get; set; }
+
+            public string animeAPI { get; set;  }
         }
 
         public static class Config
