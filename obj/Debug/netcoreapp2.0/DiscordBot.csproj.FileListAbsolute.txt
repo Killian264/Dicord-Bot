@@ -1,0 +1,55 @@
+C:\Users\Killian\Desktop\KillianBot - Copy\KillianBot\bin\Debug\netcoreapp2.0\DiscordBot.deps.json
+C:\Users\Killian\Desktop\KillianBot - Copy\KillianBot\bin\Debug\netcoreapp2.0\DiscordBot.runtimeconfig.json
+C:\Users\Killian\Desktop\KillianBot - Copy\KillianBot\bin\Debug\netcoreapp2.0\DiscordBot.runtimeconfig.dev.json
+C:\Users\Killian\Desktop\KillianBot - Copy\KillianBot\bin\Debug\netcoreapp2.0\DiscordBot.dll
+C:\Users\Killian\Desktop\KillianBot - Copy\KillianBot\bin\Debug\netcoreapp2.0\DiscordBot.pdb
+C:\Users\Killian\Desktop\KillianBot - Copy\KillianBot\obj\Debug\netcoreapp2.0\DiscordBot.csprojAssemblyReference.cache
+C:\Users\Killian\Desktop\KillianBot - Copy\KillianBot\obj\Debug\netcoreapp2.0\DiscordBot.csproj.CoreCompileInputs.cache
+C:\Users\Killian\Desktop\KillianBot - Copy\KillianBot\obj\Debug\netcoreapp2.0\DiscordBot.AssemblyInfoInputs.cache
+C:\Users\Killian\Desktop\KillianBot - Copy\KillianBot\obj\Debug\netcoreapp2.0\DiscordBot.AssemblyInfo.cs
+C:\Users\Killian\Desktop\KillianBot - Copy\KillianBot\obj\Debug\netcoreapp2.0\DiscordBot.dll
+C:\Users\Killian\Desktop\KillianBot - Copy\KillianBot\obj\Debug\netcoreapp2.0\DiscordBot.pdb
+C:\Users\Killian\Desktop\KillianBot - Copy\DiscordBot\bin\Debug\netcoreapp2.0\DiscordBot.deps.json
+C:\Users\Killian\Desktop\KillianBot - Copy\DiscordBot\bin\Debug\netcoreapp2.0\DiscordBot.runtimeconfig.json
+C:\Users\Killian\Desktop\KillianBot - Copy\DiscordBot\bin\Debug\netcoreapp2.0\DiscordBot.runtimeconfig.dev.json
+C:\Users\Killian\Desktop\KillianBot - Copy\DiscordBot\bin\Debug\netcoreapp2.0\DiscordBot.dll
+C:\Users\Killian\Desktop\KillianBot - Copy\DiscordBot\bin\Debug\netcoreapp2.0\DiscordBot.pdb
+C:\Users\Killian\Desktop\KillianBot - Copy\DiscordBot\obj\Debug\netcoreapp2.0\DiscordBot.csprojAssemblyReference.cache
+C:\Users\Killian\Desktop\KillianBot - Copy\DiscordBot\obj\Debug\netcoreapp2.0\DiscordBot.csproj.CoreCompileInputs.cache
+C:\Users\Killian\Desktop\KillianBot - Copy\DiscordBot\obj\Debug\netcoreapp2.0\DiscordBot.AssemblyInfoInputs.cache
+C:\Users\Killian\Desktop\KillianBot - Copy\DiscordBot\obj\Debug\netcoreapp2.0\DiscordBot.AssemblyInfo.cs
+C:\Users\Killian\Desktop\KillianBot - Copy\DiscordBot\obj\Debug\netcoreapp2.0\DiscordBot.dll
+C:\Users\Killian\Desktop\KillianBot - Copy\DiscordBot\obj\Debug\netcoreapp2.0\DiscordBot.pdb
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2)\bin\Debug\netcoreapp2.0\DiscordBot.deps.json
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2)\bin\Debug\netcoreapp2.0\DiscordBot.runtimeconfig.json
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2)\bin\Debug\netcoreapp2.0\DiscordBot.runtimeconfig.dev.json
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2)\bin\Debug\netcoreapp2.0\DiscordBot.dll
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2)\bin\Debug\netcoreapp2.0\DiscordBot.pdb
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2)\obj\Debug\netcoreapp2.0\DiscordBot.csprojAssemblyReference.cache
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2)\obj\Debug\netcoreapp2.0\DiscordBot.csproj.CoreCompileInputs.cache
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2)\obj\Debug\netcoreapp2.0\DiscordBot.AssemblyInfoInputs.cache
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2)\obj\Debug\netcoreapp2.0\DiscordBot.AssemblyInfo.cs
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2)\obj\Debug\netcoreapp2.0\DiscordBot.dll
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2)\obj\Debug\netcoreapp2.0\DiscordBot.pdb
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2) - Copy\bin\Debug\netcoreapp2.0\DiscordBot.deps.json
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2) - Copy\bin\Debug\netcoreapp2.0\DiscordBot.runtimeconfig.json
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2) - Copy\bin\Debug\netcoreapp2.0\DiscordBot.runtimeconfig.dev.json
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2) - Copy\bin\Debug\netcoreapp2.0\DiscordBot.dll
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2) - Copy\bin\Debug\netcoreapp2.0\DiscordBot.pdb
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2) - Copy\obj\Debug\netcoreapp2.0\DiscordBot.csprojAssemblyReference.cache
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2) - Copy\obj\Debug\netcoreapp2.0\DiscordBot.csproj.CoreCompileInputs.cache
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2) - Copy\obj\Debug\netcoreapp2.0\DiscordBot.AssemblyInfoInputs.cache
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2) - Copy\obj\Debug\netcoreapp2.0\DiscordBot.AssemblyInfo.cs
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2) - Copy\obj\Debug\netcoreapp2.0\DiscordBot.dll
+C:\Users\Killian\Desktop\DiscordBot\DiscordBot - Copy (2) - Copy\obj\Debug\netcoreapp2.0\DiscordBot.pdb
+C:\Users\Killian\Desktop\Projects\DiscordBot\DISCORDBOT MAIN\bin\Debug\netcoreapp2.0\DiscordBot.deps.json
+C:\Users\Killian\Desktop\Projects\DiscordBot\DISCORDBOT MAIN\bin\Debug\netcoreapp2.0\DiscordBot.runtimeconfig.json
+C:\Users\Killian\Desktop\Projects\DiscordBot\DISCORDBOT MAIN\bin\Debug\netcoreapp2.0\DiscordBot.runtimeconfig.dev.json
+C:\Users\Killian\Desktop\Projects\DiscordBot\DISCORDBOT MAIN\bin\Debug\netcoreapp2.0\DiscordBot.dll
+C:\Users\Killian\Desktop\Projects\DiscordBot\DISCORDBOT MAIN\bin\Debug\netcoreapp2.0\DiscordBot.pdb
+C:\Users\Killian\Desktop\Projects\DiscordBot\DISCORDBOT MAIN\obj\Debug\netcoreapp2.0\DiscordBot.csprojAssemblyReference.cache
+C:\Users\Killian\Desktop\Projects\DiscordBot\DISCORDBOT MAIN\obj\Debug\netcoreapp2.0\DiscordBot.csproj.CoreCompileInputs.cache
+C:\Users\Killian\Desktop\Projects\DiscordBot\DISCORDBOT MAIN\obj\Debug\netcoreapp2.0\DiscordBot.AssemblyInfoInputs.cache
+C:\Users\Killian\Desktop\Projects\DiscordBot\DISCORDBOT MAIN\obj\Debug\netcoreapp2.0\DiscordBot.AssemblyInfo.cs
+C:\Users\Killian\Desktop\Projects\DiscordBot\DISCORDBOT MAIN\obj\Debug\netcoreapp2.0\DiscordBot.dll
+C:\Users\Killian\Desktop\Projects\DiscordBot\DISCORDBOT MAIN\obj\Debug\netcoreapp2.0\DiscordBot.pdb
