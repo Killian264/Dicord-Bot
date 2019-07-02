@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Killian\\Desktop\\Projects\\DiscordBot\\DISCORDBOT MAIN\\DiscordBot.csproj": {}
+    "C:\\Users\\Killian\\Desktop\\Projects\\DiscordBot\\DiscordBot.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Killian\\Desktop\\Projects\\DiscordBot\\DISCORDBOT MAIN\\DiscordBot.csproj": {
+    "C:\\Users\\Killian\\Desktop\\Projects\\DiscordBot\\DiscordBot.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Killian\\Desktop\\Projects\\DiscordBot\\DISCORDBOT MAIN\\DiscordBot.csproj",
+        "projectUniqueName": "C:\\Users\\Killian\\Desktop\\Projects\\DiscordBot\\DiscordBot.csproj",
         "projectName": "DiscordBot",
-        "projectPath": "C:\\Users\\Killian\\Desktop\\Projects\\DiscordBot\\DISCORDBOT MAIN\\DiscordBot.csproj",
+        "projectPath": "C:\\Users\\Killian\\Desktop\\Projects\\DiscordBot\\DiscordBot.csproj",
         "packagesPath": "C:\\Users\\Killian\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Killian\\Desktop\\Projects\\DiscordBot\\DISCORDBOT MAIN\\obj\\",
+        "outputPath": "C:\\Users\\Killian\\Desktop\\Projects\\DiscordBot\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
