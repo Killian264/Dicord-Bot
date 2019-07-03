@@ -1,0 +1,33 @@
+{
+  "BotToken": "",
+  "BirthdayFileName": "birthday.txt",
+  "DictionaryApi": "https://googledictionaryapi.eu-gb.mybluemix.net/?define=",
+  "DictionaryLang": "&lang=en",
+  "CommandLetter": "!",
+  "MerriamBase": "https://www.merriam-webster.com/dictionary/",
+  "GoogleFirst": "https://www.google.com/search?rlz=1C1CHBF_enUS715US715&ei=KCq6XOvFAsOisAXRuJPYBQ&q=",
+  "GoogleSecond": "+def",
+  "AnimeAPI": "https://api.jikan.moe/v3/search/anime?q=",
+
+  "WordTypes": [
+    "Noun",
+    "Verb",
+    "Adverb",
+    "Adjective",
+    "Exclamation",
+    "Determiner",
+    "Pronoun",
+    "Preposition",
+    "Conjunction",
+    "Conjunction & adverb",
+    "Determiner & pronoun",
+    "Predeterminer, determiner, & pronoun",
+    "Determiner, pronoun, & adjective",
+    "Number"
+  ],
+  "NumWordTypes": "14",
+
+  "RedditAppID": "",
+  "RedditAppSecret": "",
+  "RedditAppRefreshToken": ""
+}
