@@ -2,7 +2,15 @@
 C# Discord Bot that I am currently working on using .NET and Discord.Net.
 
 ------------------------------------------------------
+# What I learned
 
+Async design and implementation.
+
+Api calls and serialization and deserilization to and from models.
+
+Config files and JSON config files.
+
+------------------------------------------------------
 Commands:
 
 !birthday - Returns next birthday or any birthdays that are today.
