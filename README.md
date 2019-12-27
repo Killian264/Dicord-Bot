@@ -1,5 +1,5 @@
 # Discord-Bot
-C# Discord Bot that I am currently working on using .NET and Discord.Net.
+This is a bot made for Discord a program and website that allows you to talk to people over the internet. With this bot you can call a bunch of different commands that return information mainly from API's.
 
 ------------------------------------------------------
 # What I learned
